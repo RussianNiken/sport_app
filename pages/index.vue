@@ -1,0 +1,116 @@
+
+<template>
+  <div>
+    <div class="grid grid-cols-2 p-5"> <!-- NAV START -->
+
+      <div class="col-auto">
+        <h1>Workout record</h1>
+        <p>May 11 ›</p>
+      </div>
+      
+      <div class="flex col-auto justify-end">
+        <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 0.28125C10.3008 0.325879 6.76575 1.8152 4.14985 4.4311C1.53395 7.047 0.0446294 10.5821 0 14.2812C0.0446294 17.9804 1.53395 21.5155 4.14985 24.1314C6.76575 26.7473 10.3008 28.2366 14 28.2812C17.6992 28.2366 21.2343 26.7473 23.8501 24.1314C26.466 21.5155 27.9554 17.9804 28 14.2812C27.9554 10.5821 26.466 7.047 23.8501 4.4311C21.2343 1.8152 17.6992 0.325879 14 0.28125ZM22 15.2812H15V22.2812H13V15.2812H6V13.2812H13V6.28125H15V13.2812H22V15.2812Z" fill="#FAFAFA"/>
+        </svg>
+      </div>
+      
+      <div class="flex col-span-2 justify-between p-10"> <!-- BUTTONS START -->
+
+        <div class="grid justify-items-center">
+          <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M9.33333 12H12.4444V16H9.33333V12Z" fill="#FAFAFA"/>
+            <path d="M3.11111 3.125H24.8889V12.5H3.11111V3.125Z" fill="#FAFAFA"/>
+            <path d="M3.11111 15.625H24.8889V25H3.11111V15.625Z" fill="#FAFAFA"/>
+            <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98795 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98795 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
+            <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98795 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98795 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
+          </svg>
+          <p>Day</p>
+        </div>
+
+        <div class="grid justify-items-center">
+          <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M6 12.5H22V15.625H6V12.5Z" fill="#FAFAFA"/>
+            <path d="M6 9H10.8889V13H6V12.5V9Z" fill="#FAFAFA"/>
+            <path d="M3.11111 3.125H24.8889V9.375H3.11111V3.125Z" fill="#FAFAFA"/>
+            <path d="M3.11111 18.75H24.8889V25H3.11111V18.75Z" fill="#FAFAFA"/>
+            <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98794 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98794 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
+            <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98794 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98794 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
+          </svg>
+          <p>Week</p>
+        </div>
+
+        <div class="grid justify-items-center">
+          <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
+            <path d="M6 12.5H22V15.625H6V12.5Z" fill="#FAFAFA"/>
+            <path d="M9.33333 9H12.4444V19H9.33333V9Z" fill="#FAFAFA"/>
+            <path d="M15.5556 9H18.6667V19H15.5556V9Z" fill="#FAFAFA"/>
+            <path d="M3.11111 3.125H24.8889V9.375H3.11111V3.125Z" fill="#FAFAFA"/>
+            <path d="M3.11111 18.75H24.8889V25H3.11111V18.75Z" fill="#FAFAFA"/>
+            <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98794 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98794 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
+            <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98794 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98794 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
+          </svg>
+          <p>Month</p>
+        </div>
+
+      </div> <!-- BUTTONS END -->
+    </div> <!-- NAV END -->
+
+    <div class="h-48">
+      
+    </div>
+
+    <div>
+      <svg width="100vw" height="422" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10 L190 10 L200 0 L210 10 L400 10 L400 400 L0 400" fill="url(#paint0_linear)"/>
+        <defs>
+          <linearGradient id="paint0_linear" x1="180" y1="0" x2="180" y2="400" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4A43D2"/>
+            <stop offset="1" stop-color="#560BAD"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+    </div> 
+  </div>
+</template>
+
+<script>
+export default {
+  layout: 'default'
+}
+</script>
+
+<style>
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../static/fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../static/fonts/open-sans-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../static/fonts/open-sans-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../static/fonts/open-sans-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../static/fonts/open-sans-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../static/fonts/open-sans-v18-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(180deg, #4361EE 0.01%, #560BAD 64.58%), #B5179E;
+  font-family: 'Open Sans';
+  color: #fafafa;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+</style>
