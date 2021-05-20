@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <div class="grid grid-cols-2 p-5"> <!-- NAV START -->
+    <div class="grid grid-cols-2 p-5 pb-1"> <!-- NAV START -->
 
       <div class="col-auto">
         <h1>Workout record</h1>
@@ -16,7 +16,7 @@
       
       <div class="flex col-span-2 justify-between p-10"> <!-- BUTTONS START -->
 
-        <div class="grid justify-items-center">
+        <SVGButton :current="active" :i="0" text="Day" @change="change">
           <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
             <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
@@ -26,10 +26,9 @@
             <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98795 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98795 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
             <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98795 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98795 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
           </svg>
-          <p>Day</p>
-        </div>
+        </SVGButton>
 
-        <div class="grid justify-items-center">
+        <SVGButton :current="active" :i="1" text="Month" @change="change">
           <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
             <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
@@ -40,10 +39,9 @@
             <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98794 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98794 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
             <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98794 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98794 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
           </svg>
-          <p>Week</p>
-        </div>
+        </SVGButton>
 
-        <div class="grid justify-items-center">
+        <SVGButton :current="active" :i="2" text="Year" @change="change">
           <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.7778 6.25C21.7778 4.52411 23.1707 3.125 24.8889 3.125C26.6071 3.125 28 4.52411 28 6.25V21.875C28 23.6009 26.6071 25 24.8889 25C23.1707 25 21.7778 23.6009 21.7778 21.875V6.25Z" fill="#FAFAFA"/>
             <path d="M0 6.25C0 4.52411 1.39289 3.125 3.11111 3.125C4.82933 3.125 6.22222 4.52411 6.22222 6.25V21.875C6.22222 23.6009 4.82933 25 3.11111 25C1.39289 25 0 23.6009 0 21.875V6.25Z" fill="#FAFAFA"/>
@@ -55,14 +53,14 @@
             <path d="M4.66667 1.5625C4.66667 0.699555 5.36311 0 6.22222 0H7.77778C8.63689 0 9.33333 0.699555 9.33333 1.5625V3.125C9.33333 3.98794 8.63689 4.6875 7.77778 4.6875H6.22222C5.36311 4.6875 4.66667 3.98794 4.66667 3.125V1.5625Z" fill="#FAFAFA"/>
             <path d="M18.6667 1.5625C18.6667 0.699555 19.3631 0 20.2222 0H21.7778C22.6369 0 23.3333 0.699555 23.3333 1.5625V3.125C23.3333 3.98794 22.6369 4.6875 21.7778 4.6875H20.2222C19.3631 4.6875 18.6667 3.98794 18.6667 3.125V1.5625Z" fill="#FAFAFA"/>
           </svg>
-          <p>Month</p>
-        </div>
+        </SVGButton>
+          
 
       </div> <!-- BUTTONS END -->
     </div> <!-- NAV END -->
 
-    <div class="h-48">
-      
+    <div>
+      <Graph :exercises="exercises" :key="this.changed" @update="update"/>
     </div>
 
     <div>
@@ -76,13 +74,61 @@
         </defs>
       </svg>
 
+      <div class="absolute">
+        <ExerciseList :date="date" />
+      </div>
+
     </div> 
   </div>
 </template>
 
 <script>
+
 export default {
-  layout: 'default'
+  layout: 'default',
+  data() {
+    return {
+      active: 0,
+      count: 0,
+      exercises: [],
+      changed: false,  // For update purposes
+      date: {day:0, month:0, year:0}
+    }
+  },
+  async fetch( ) {
+    let result = await fetch(`http://localhost:3000/api/graphed?uid=1&mode=${this.active}`).then( res => res.json() );
+
+    this.exercises = [];
+    result.forEach( (item, index)  => this.exercises.push({
+      day: item.day,
+      month: item.month,
+      year: item.year,
+      index: index,
+      score: item.avg.score,
+      text: (item.day)? `${item.day}/${item.month}` : (item.month)?` ${item.month}/${item.year}` : `${item.year}`
+    }));
+
+
+    let n = this.exercises.length - 1;
+    this.date.day = this.exercises[n].day;
+    this.date.month = this.exercises[n].month;
+    this.date.year = this.exercises[n].year;
+
+    this.changed = !this.changed;
+
+  },
+  methods:
+  {
+    change( i ) 
+    {
+      this.active = i;
+      this.$fetch( );
+    },
+    update( date )
+    {
+      this.date = date;
+    }
+  }
 }
 </script>
 

@@ -20,6 +20,10 @@ export default {
   plugins: [
   ],
 
+  serverMiddleware: [
+    '~/api/index.js'
+  ],
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -32,7 +36,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -48,6 +52,22 @@ export default {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }]
       ]
+    },
+    extend(config, { isDev, isClient }) {
+    
+      config.node = {
+          fs: "empty"
+      };
+      // ..
+      config.module.rules.push({
+        test: /\.mp3$/,
+        loader: 'file-loader'
+      });
+
+      // Sets webpack's mode to development if `isDev` is true.
+      if (isDev) {
+        config.mode = 'development'
+      }
     }
   }
 }

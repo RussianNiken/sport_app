@@ -10,14 +10,30 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
+    "@prisma/client": "^2.22.1",
+    "@vueuse/sound": "^1.1.7",
     "core-js": "^3.12.0",
-    "nuxt": "^2.15.3"
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "fs": "^0.0.1-security",
+    "mariadb": "^2.5.3",
+    "mysql2": "^2.2.5",
+    "net": "^1.0.2",
+    "node-sass": "^6.0.0",
+    "nuxt": "^2.15.3",
+    "pg-hstore": "^2.3.3",
+    "sass-loader": "^10",
+    "sequelize-cli": "^6.2.0",
+    "swiper": "^6.6.1",
+    "tls": "^0.0.1",
+    "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.0.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "postcss": "^8.2.8",
-    "prettier": "^2.2.1"
+    "postcss": "^8.2.15",
+    "prettier": "^2.2.1",
+    "prisma": "^2.22.1"
   }
 }
