@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:peke2792@localhost:3306/sport"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model videos {
+  user_id   Int
+  video_id  Int      @id @default(autoincrement())
+  data      String   @db.Text
+  video     Bytes    @db.LongBlob	
+  processed Boolean
+  score     Float
+  date      DateTime @default(dbgenerated("NOW()"))
+  year      Int      @default(dbgenerated("YEAR(NOW())"))
+  month     Int      @default(dbgenerated("MONTH(NOW())"))
+  day       Int      @default(dbgenerated("DAY(NOW())"))
+}
