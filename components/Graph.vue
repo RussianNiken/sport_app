@@ -5,7 +5,7 @@
         <div></div>
         <div></div>
     </div>
-      <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="play();getActive()" virtual>
+      <swiper class="swiper" :options="swiperOption" ref="mySwiper" @touchEnd="getActive()" @slideChange="play();" virtual>
         <swiper-slide v-for="(slide, index) in virtualData.slides" :key="index" :style="slideStyles">
             <GraphBar :text="slide.text" :score="slide.score" :i="slide.index" :current="active" key/>
         </swiper-slide>
@@ -59,12 +59,18 @@
     methods: {
       getActive(count = 10) {
         this.$nextTick(() => {
-          if (this.$refs.mySwiper)
+          if (this.$refs.mySwiper) 
+          {
             this.active = this.$refs.mySwiper.$swiper.activeIndex;
+            this.$emit('update', this.exercises[this.active]);
+          }
           
           else if (count > 0)
             this.getActive(count-1);
         });
+      },
+      log( ) {
+        console.log( 'a' );
       }
     },
     computed: {

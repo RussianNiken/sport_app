@@ -9,7 +9,7 @@
       </div>
       
       <div class="flex col-auto justify-end">
-        <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="Button" width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14 0.28125C10.3008 0.325879 6.76575 1.8152 4.14985 4.4311C1.53395 7.047 0.0446294 10.5821 0 14.2812C0.0446294 17.9804 1.53395 21.5155 4.14985 24.1314C6.76575 26.7473 10.3008 28.2366 14 28.2812C17.6992 28.2366 21.2343 26.7473 23.8501 24.1314C26.466 21.5155 27.9554 17.9804 28 14.2812C27.9554 10.5821 26.466 7.047 23.8501 4.4311C21.2343 1.8152 17.6992 0.325879 14 0.28125ZM22 15.2812H15V22.2812H13V15.2812H6V13.2812H13V6.28125H15V13.2812H22V15.2812Z" fill="#FAFAFA"/>
         </svg>
       </div>
@@ -64,7 +64,11 @@
     </div>
 
     <div>
-      <svg width="100vw" height="422" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="absolute">
+        <ExerciseList :date="date" ref="EL" />
+      </div>
+
+      <svg preserveAspectRatio="none" width="100vw" height="422" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 10 L190 10 L200 0 L210 10 L400 10 L400 400 L0 400" fill="url(#paint0_linear)"/>
         <defs>
           <linearGradient id="paint0_linear" x1="180" y1="0" x2="180" y2="400" gradientUnits="userSpaceOnUse">
@@ -74,15 +78,12 @@
         </defs>
       </svg>
 
-      <div class="absolute">
-        <ExerciseList :date="date" />
-      </div>
-
     </div> 
   </div>
 </template>
 
 <script>
+let date = new Date();
 
 export default {
   layout: 'default',
@@ -92,22 +93,122 @@ export default {
       count: 0,
       exercises: [],
       changed: false,  // For update purposes
-      date: {day:0, month:0, year:0}
+      date: {
+        day: date.getDate(), 
+        month: date.getMonth() + 1, 
+        year: date.getFullYear()
+      }
     }
   },
   async fetch( ) {
     let result = await fetch(`http://localhost:3000/api/graphed?uid=1&mode=${this.active}`).then( res => res.json() );
 
+    let tmp = [];
     this.exercises = [];
-    result.forEach( (item, index)  => this.exercises.push({
-      day: item.day,
-      month: item.month,
-      year: item.year,
-      index: index,
-      score: item.avg.score,
-      text: (item.day)? `${item.day}/${item.month}` : (item.month)?` ${item.month}/${item.year}` : `${item.year}`
-    }));
 
+    result.forEach( (item, index)  => {
+      tmp.push({
+        day: item.day,
+        month: item.month,
+        year: item.year,
+        index: index,
+        score: item.avg.score,
+        text: (item.day)? `${item.day}/${item.month}` : (item.month)?` ${item.month}/${item.year}` : `${item.year}`
+      });
+    });
+
+    var now = new Date();
+
+    let i = 0;
+
+    switch( this.active ) {
+      case 0:
+        for ( var d = new Date(tmp[0].year,tmp[0].month-1,tmp[0].day); d <= now; d.setDate(d.getDate() + 1)) {
+          if ( 
+            tmp[0] &&
+            tmp[0].day == d.getDate() && 
+            tmp[0].month-1 == d.getMonth() && 
+            tmp[0].year == d.getFullYear() )
+          {
+            tmp[0].index = i++;
+            this.exercises.push(tmp[0]);
+            tmp.shift();
+          }
+          else
+          {
+            let item = {
+              day: d.getDate(), 
+              month: d.getMonth() + 1, 
+              year: d.getFullYear()
+            };
+
+            this.exercises.push({
+              day: item.day,
+              month: item.month,
+              year: item.year,
+              index: i++,
+              score: 0,
+              text: (item.day)? `${item.day}/${item.month}` : (item.month)?` ${item.month}/${item.year}` : `${item.year}`
+            });
+          }
+        }
+        break;
+      case 1:
+        for ( var d = new Date(tmp[0].year,tmp[0].month-1,1); d <= now; d.setMonth(d.getMonth() + 1)) {
+          console.log(d);
+          if ( 
+            tmp[0] &&
+            tmp[0].month-1 == d.getMonth() && 
+            tmp[0].year == d.getFullYear() )
+          {
+            tmp[0].index = i++;
+            this.exercises.push(tmp[0]);
+            tmp.shift();
+          }
+          else
+          {
+            let item = {
+              month: d.getMonth() + 1, 
+              year: d.getFullYear()
+            };
+
+            this.exercises.push({
+              month: item.month,
+              year: item.year,
+              index: i++,
+              score: 0,
+              text: (item.month)?` ${item.month}/${item.year}` : `${item.year}`
+            });
+          }
+        }
+        break;
+      case 2:
+        for ( var d = new Date(tmp[0].year,0,1); d <= now; d.setFullYear(d.getFullYear() + 1)) {
+          console.log(d);
+          if ( 
+            tmp[0] &&
+            tmp[0].year == d.getFullYear() )
+          {
+            tmp[0].index = i++;
+            this.exercises.push(tmp[0]);
+            tmp.shift();
+          }
+          else
+          {
+            let item = {
+              year: d.getFullYear()
+            };
+
+            this.exercises.push({
+              year: item.year,
+              index: i++,
+              score: 0,
+              text: `${item.year}`
+            });
+          }
+        }
+        break;
+    }
 
     let n = this.exercises.length - 1;
     this.date.day = this.exercises[n].day;
@@ -115,48 +216,41 @@ export default {
     this.date.year = this.exercises[n].year;
 
     this.changed = !this.changed;
-
   },
   methods:
   {
     change( i ) 
     {
       this.active = i;
-      this.$fetch( );
+      this.$fetch();
     },
-    update( date )
+    update( d )
     {
-      this.date = date;
+      if (d) 
+      {
+        this.date.day = d.day;
+        this.date.month = d.month;
+        this.date.year = d.year;
+        this.$refs.EL.$fetch();
+      }
     }
   }
 }
 </script>
 
 <style>
-/* open-sans-regular - latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../static/fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('../static/fonts/open-sans-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../static/fonts/open-sans-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../static/fonts/open-sans-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../static/fonts/open-sans-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../static/fonts/open-sans-v18-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+
+@keyframes rotate-out {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
-body {
-  height: 100vh;
-  background: linear-gradient(180deg, #4361EE 0.01%, #560BAD 64.58%), #B5179E;
-  font-family: 'Open Sans';
-  color: #fafafa;
-  font-size: 14px;
-}
-
-h1 {
-  font-size: 24px;
+.Button {
+  animation: rotate-out 1s;
 }
 
 </style>

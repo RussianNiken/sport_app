@@ -47,8 +47,6 @@ app.get('/graphed', async (req, res) => {
       break;
   }
 
-  // Also ask for fromat (monthly, weekly, daily)
-
   const posts = await prisma.videos.groupBy({
       by: groups,
       where: { user_id: user_id },
@@ -66,13 +64,29 @@ app.get('/exercises', async (req, res) => {
   const month = parseInt(req.query.month);
   const year = parseInt(req.query.year);
 
-  // let where = (day?)
-  
-  // Also ask for fromat (monthly, weekly, daily)
+  let where = {};
+
+  where.user_id = parseInt(req.query.uid);
+  if (req.query.day)
+    where.day = parseInt(req.query.day);
+  if (req.query.month)
+    where.month = parseInt(req.query.month);
+  where.year = parseInt(req.query.year);
 
   const posts = await prisma.videos.findMany({
-      where: { 
-        user_id: user_id,
+      where: where
+  });
+
+  res.json(posts);
+})
+
+
+app.get('/video', async (req, res) => {
+  const id = parseInt(req.query.id);
+
+  const posts = await prisma.videos.findUnique({
+      where: {
+        video_id: id
       }
   });
 
