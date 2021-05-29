@@ -1,34 +1,19 @@
 // index.js
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 
 const prisma = new PrismaClient()
 const app = express()
 
-app.use(express.json())
+app.use(cors);
+app.listen(80);
+
+app.use(express.json({limit: '50mb'}))
 
 /** 
 * logic for our api will go here
 */
-
-// To update shiet
-
-// // index.js
-// app.post('/post', async (req, res) => {
-//     const { title, content, authorEmail } = req.body
-//     const post = await prisma.post.create({
-//       data: {
-//         title,
-//         content,
-//         author: {
-//           connectOrCreate: {
-//             email: authorEmail
-//           }
-//         }
-//       }
-//     })
-//     res.status(200).json(post)
-//   })
 
 app.get('/graphed', async (req, res) => {
   const user_id = parseInt( req.query.uid );
@@ -74,7 +59,10 @@ app.get('/exercises', async (req, res) => {
   where.year = parseInt(req.query.year);
 
   const posts = await prisma.videos.findMany({
-      where: where
+      where: where,
+      orderBy: {
+        date: 'asc'
+      }
   });
 
   res.json(posts);
@@ -91,6 +79,31 @@ app.get('/video', async (req, res) => {
   });
 
   res.json(posts);
+})
+
+
+app.post('/upload', async (req, res) => {
+  
+  let date = new Date(req.body.date);
+
+  let data = {
+    user_id: req.body.id,
+    weight: req.body.weight,
+    video: Buffer.from(req.body.video),
+    date: req.body.date,
+    day: date.getDate(),
+    data: '',
+    score: 0,
+    month: date.getMonth() + 1,
+    year: date.getFullYear(),
+    processed: false
+  } 
+
+  const post = await prisma.videos.create({
+    data: data
+  });
+
+  res.status(200).json(post);
 })
 
 

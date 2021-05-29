@@ -13,10 +13,11 @@ generator client {
 model videos {
   user_id   Int
   video_id  Int      @id @default(autoincrement())
-  data      String   @db.Text
+  data      String?  @db.Text
   video     Bytes    @db.LongBlob	
   processed Boolean
-  score     Float
+  score     Float?
+  weight    Float?
   date      DateTime @default(dbgenerated("NOW()"))
   year      Int      @default(dbgenerated("YEAR(NOW())"))
   month     Int      @default(dbgenerated("MONTH(NOW())"))

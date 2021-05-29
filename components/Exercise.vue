@@ -5,7 +5,7 @@
         <p>{{type}}</p>
     </div>
     <div class="right" :style="css">
-        {{score*10}}
+        {{(score*10).toFixed(2)}}
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     computed: {
         css() {
             if ( this.score > .9 )
-                return '--c: #43AA8B';
+                return '--c: #4ac09d';
             if ( this.score > .7 )
                 return '--c: #90BE6D';
             if ( this.score > .6 )

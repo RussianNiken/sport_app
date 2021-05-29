@@ -41,6 +41,7 @@
           centeredSlides: true,
           spaceBetween: 0,
           initialSlide: this.exercises.lenght,
+          simulateTouch: true,
           virtual: {
             addSlidesBefore: 0,
             addSlidesAfter: 0,

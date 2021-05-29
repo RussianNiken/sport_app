@@ -9,9 +9,11 @@
       </div>
       
       <div class="flex col-auto justify-end">
-        <svg class="Button" width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 0.28125C10.3008 0.325879 6.76575 1.8152 4.14985 4.4311C1.53395 7.047 0.0446294 10.5821 0 14.2812C0.0446294 17.9804 1.53395 21.5155 4.14985 24.1314C6.76575 26.7473 10.3008 28.2366 14 28.2812C17.6992 28.2366 21.2343 26.7473 23.8501 24.1314C26.466 21.5155 27.9554 17.9804 28 14.2812C27.9554 10.5821 26.466 7.047 23.8501 4.4311C21.2343 1.8152 17.6992 0.325879 14 0.28125ZM22 15.2812H15V22.2812H13V15.2812H6V13.2812H13V6.28125H15V13.2812H22V15.2812Z" fill="#FAFAFA"/>
-        </svg>
+        <nuxt-link to="upload">
+          <svg class="Button" width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 0.28125C10.3008 0.325879 6.76575 1.8152 4.14985 4.4311C1.53395 7.047 0.0446294 10.5821 0 14.2812C0.0446294 17.9804 1.53395 21.5155 4.14985 24.1314C6.76575 26.7473 10.3008 28.2366 14 28.2812C17.6992 28.2366 21.2343 26.7473 23.8501 24.1314C26.466 21.5155 27.9554 17.9804 28 14.2812C27.9554 10.5821 26.466 7.047 23.8501 4.4311C21.2343 1.8152 17.6992 0.325879 14 0.28125ZM22 15.2812H15V22.2812H13V15.2812H6V13.2812H13V6.28125H15V13.2812H22V15.2812Z" fill="#FAFAFA"/>
+          </svg>
+        </nuxt-link>
       </div>
       
       <div class="flex col-span-2 justify-between p-10"> <!-- BUTTONS START -->
@@ -65,7 +67,7 @@
 
     <div>
       <div class="absolute">
-        <ExerciseList :date="date" ref="EL" />
+        <ExerciseList :date="date" ref="EL" :selected="active" />
       </div>
 
       <svg preserveAspectRatio="none" width="100vw" height="422" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,7 +103,7 @@ export default {
     }
   },
   async fetch( ) {
-    let result = await fetch(`http://localhost:3000/api/graphed?uid=1&mode=${this.active}`).then( res => res.json() );
+    let result = await this.$axios.$get(`api/graphed?uid=1&mode=${this.active}`);
 
     let tmp = [];
     this.exercises = [];
@@ -242,7 +244,7 @@ export default {
 
 @keyframes rotate-out {
   0% {
-    transform: rotate(-45deg);
+    transform: rotate(-135deg);
   }
   100% {
     transform: rotate(0deg);
