@@ -157,7 +157,6 @@ export default {
         break;
       case 1:
         for ( var d = new Date(tmp[0].year,tmp[0].month-1,1); d <= now; d.setMonth(d.getMonth() + 1)) {
-          console.log(d);
           if ( 
             tmp[0] &&
             tmp[0].month-1 == d.getMonth() && 
@@ -186,7 +185,6 @@ export default {
         break;
       case 2:
         for ( var d = new Date(tmp[0].year,0,1); d <= now; d.setFullYear(d.getFullYear() + 1)) {
-          console.log(d);
           if ( 
             tmp[0] &&
             tmp[0].year == d.getFullYear() )

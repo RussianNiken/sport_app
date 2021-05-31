@@ -3,11 +3,15 @@ import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import cors from 'cors'
 
+
 const prisma = new PrismaClient()
 const app = express()
 
-app.use(cors);
-app.listen(80);
+console.log(app)
+
+app.use(cors({
+  origin: 'http://192.168.1.87:3000'
+}));
 
 app.use(express.json({limit: '50mb'}))
 
