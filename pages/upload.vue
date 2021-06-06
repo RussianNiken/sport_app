@@ -26,11 +26,40 @@
 			</select>
 
 			<div class="FileUploadContainer">
-				<label class="FileUpload">
+				<label class="FileUpload" style="width: 250px">
 					<input type="file" accept="video/mp4,video/x-m4v,video/*" @change="file_changed()" ref="finput" />
-					Upload from camera
+					<p style="margin-bottom: 16px">Upload video</p>
 					<svg height="100px" width="100px" viewBox="0 0 24 24" style="fill:#fafafa">
 						<path d="M23.2,6c-0.2-0.1-0.4-0.1-0.5,0l-3.5,2.7V7.5c0-1.6-1.3-2.9-2.9-2.9H3.4c-1.6,0-2.9,1.3-2.9,2.9v9c0,1.6,1.3,2.9,2.9,2.9  h12.9c1.6,0,2.9-1.3,2.9-2.9v-1.2l3.5,2.7c0.1,0.1,0.3,0.1,0.5,0c0.2-0.1,0.3-0.2,0.3-0.4V6.4C23.5,6.2,23.4,6.1,23.2,6z"/>
+					</svg>
+				</label>
+				
+				<label class="FileUpload" style="width: 250px">
+					<input type="file" accept="video/mp4,video/x-m4v,video/*" @change="file_changed()" ref="finput" />
+					<p style="margin-bottom: 16px">Scan QR code at the gym</p>
+					<svg width="100px" height="100px" viewBox="0 0 24 24" version="1.1" id="svg5" inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)" sodipodi:docname="qr.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+						<sodipodi:namedview id="namedview7" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:pageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:document-units="mm" showgrid="false" inkscape:zoom="8" inkscape:cx="20.25" inkscape:cy="48.5625" inkscape:window-width="2560" inkscape:window-height="1414" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="layer2" showguides="true" inkscape:guide-bbox="true" width="24mm">
+							<sodipodi:guide position="-1.110223e-16,273" orientation="1,0" id="guide19" />
+							<sodipodi:guide position="0.23947958,273.00022" orientation="0,-1" id="guide21" />
+							<sodipodi:guide position="24.000914,296.4175" orientation="1,0" id="guide23" />
+							<sodipodi:guide position="0.55454048,296.99997" orientation="0,-1" id="guide25" />
+							</sodipodi:namedview>
+						<defs id="defs2" />
+						<g inkscape:groupmode="layer" id="layer2" inkscape:label="Capa 2" />
+						<g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1">
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.264583" id="rect31" width="8" height="8" x="-1.110223e-16" y="-5.5511151e-17" rx="1" />
+							<rect style="fill:#4361ee;fill-rule:evenodd;stroke-width:0.198438" id="rect31-3-62" width="6" height="6" x="1.0583344" y="1.0583344" rx="1" />
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.132292" id="rect31-3-62-2" width="4" height="4" x="2.1166687" y="2.1166687" rx="1" />
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.264583" id="rect31-3-6" width="8" height="8" x="16" y="-5.5511151e-17" rx="1" />
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.264583" id="rect31-3-6-5" width="8" height="8" x="-1.110223e-16" y="16" rx="1" />
+							<rect style="fill:#4361ee;fill-rule:evenodd;stroke-width:0.198438" id="rect31-3-62-9" width="6" height="6" x="17.058334" y="1.0583344" rx="1" />
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.132292" id="rect31-3-62-9-3" width="4" height="4" x="18.116669" y="2.1166687" rx="1" />
+							<rect style="fill:#4361ee;fill-rule:evenodd;stroke-width:0.198438" id="rect31-3-62-9-1" width="6" height="6" x="1.0583344" y="17.058334" rx="1" />
+							<rect style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.132292" id="rect31-3-62-9-1-9" width="4" height="4" x="2.1166687" y="18.116669" rx="1" />
+							<rect style="fill:#ffffff;stroke-width:0.241868" id="rect2016" width="3" height="3" x="15.766662" y="15.766667" rx="1" />
+							<rect style="fill:#4361ee;stroke-width:0.161245" id="rect2016-6" width="2" height="2" x="16.295828" y="16.295834" rx="1" />
+							<rect style="fill:#ffffff;stroke-width:0.0806222" id="rect2016-6-6" width="1" height="1" x="16.824995" y="16.825001" rx="1" />
+						</g>
 					</svg>
 				</label>
 			</div>

@@ -22,13 +22,16 @@
     "mysql2": "^2.2.5",
     "net": "^1.0.2",
     "node-sass": "^6.0.0",
-    "nuxt": "^2.15.3",
+    "nuxt": "^2.15.6",
     "pg-hstore": "^2.3.3",
     "sass-loader": "^10",
     "sequelize-cli": "^6.2.0",
     "swiper": "^6.6.1",
     "tls": "^0.0.1",
-    "vue-awesome-swiper": "^4.1.1"
+    "vue": "^2.6.13",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-qrcode-reader": "^3.0.1",
+    "vue-template-compiler": "^2.6.13"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.0.1",
