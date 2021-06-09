@@ -4,7 +4,11 @@ import fs from 'fs'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+	https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'key.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt'))
+    }
   },
 
 
@@ -49,7 +53,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://localhost:3000', // Used as fallback if no runtime config is provided
+    baseURL: 'https://localhost:3000', // Used as fallback if no runtime config is provided
   },
 
   publicRuntimeConfig: {

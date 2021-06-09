@@ -19,19 +19,18 @@
 			<input v-model="weight" placeholder="kg" />
 
 
-			<p display="none">{{getExerciseList()}}</p>
 			<h2>Type of exercise:</h2>
-				<select v-model="exercise" required :disabled="selectExercise" >
-					<option v-for="e in exerciseList" :key="e.name" :value="e.name">{{e.name}}</option>
-				</select>
+			<select v-model="exercise" required :disabled="selectExercise" @init="getExerciseList" >
+				<option v-for="e in exerciseList" :key="e.name" :value="e.name">{{e.name}}</option>
+			</select>
 
 			{{qrdata}}
-			<div id="qrscanner" :style="showqr" style="margin: 50px auto 50px auto; display: flex; align-content: center; justify-content: center; max-height: 300px; max-width: 530px">
-				<qrcode-stream @decode="onDecode"></qrcode-stream>
+			<div id="qrscanner" :style="showqr" style="margin: 50px auto 50px auto; display: flex; align-content: center; justify-content: center; height: auto; max-width: 530px">
+				<qrcode-stream @decode="onDecode" @init="onInit"></qrcode-stream>
 			</div>
 			
 			<div class="FileUploadContainer">
-				<label class="FileUpload" style="width: 250px">
+				<label class="FileUpload" styheight: auto>
 					<input type="file" accept="video/mp4,video/x-m4v,video/*" @change="file_changed()" ref="finput" />
 					<p style="margin-bottom: 16px">Upload video</p>
 					<svg height="100px" width="100px" viewBox="0 0 24 24" style="fill:#fafafa">
@@ -158,7 +157,17 @@ export default {
 				this.selectExercise = false;
 				this.showqr = "display: none";
 			}
+		},
+		async onInit ( promise ) {
+			try {
+				await promise;
+			} catch (error) {
+				console.log(error);
+			}
 		}
+	},
+	created: function() {
+		this.getExerciseList();
 	}
 }
 </script>
