@@ -6,9 +6,10 @@ export default {
   server: {
     host: '0.0.0.0',
 	https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'key.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt'))
-    }
+		key: fs.readFileSync(path.resolve(__dirname, 'key.key')),
+		cert: fs.readFileSync(path.resolve(__dirname, 'key.crt'))
+	},
+	hotOnly: false
   },
 
 
@@ -53,7 +54,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'https://localhost:3000', // Used as fallback if no runtime config is provided
+    baseURL: 'https://pc.lony.xyz:3000', // Used as fallback if no runtime config is provided
   },
 
   publicRuntimeConfig: {

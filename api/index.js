@@ -10,7 +10,7 @@ const app = express()
 console.log(app)
 
 app.use(cors({
-  origin: 'http://192.168.1.150:3000'
+  origin: 'https://pc.lony.xyz:3000'
 }));
 
 app.use(express.json({limit: '50mb'}))
@@ -39,7 +39,7 @@ app.get('/graphed', async (req, res) => {
   const posts = await prisma.videos.groupBy({
       by: groups,
       where: { user_id: user_id },
-      avg : {
+      avg: {
           score: true
       }
   });
