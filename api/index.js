@@ -10,7 +10,7 @@ const app = express()
 console.log(app)
 
 app.use(cors({
-  origin: 'http://192.168.1.87:3000'
+  origin: 'http://192.168.1.150:3000'
 }));
 
 app.use(express.json({limit: '50mb'}))
@@ -79,10 +79,12 @@ app.get('/exerciselist', async (req, res) => {
 })
 
 app.get('/video', async (req, res) => {
+  const id = parseInt(req.query.id);
+
   const posts = await prisma.videos.findUnique({
-      where: {
-        video_id: id
-      }
+    where: {
+      video_id: id
+    }
   });
 
   res.json(posts);

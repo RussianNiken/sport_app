@@ -55,9 +55,9 @@
                         {{c}} 
                     </p>
                 </div>
-                <div class="aweful">
-                    <p v-for="c in stats.aweful" :key="c">
-                        <b>Aweful</b>
+                <div class="awful">
+                    <p v-for="c in stats.awful" :key="c">
+                        <b>Awful</b>
                         {{c}} 
                     </p>
                 </div>
@@ -159,7 +159,7 @@ export default {
 .Corrections .good    b { color: #F9C74F; }
 .Corrections .average b { color: #F8961E; }
 .Corrections .bad     b { color: #F3722C; }
-.Corrections .aweful  b { color: #F94144; }
+.Corrections .awful  b { color: #F94144; }
 
 .Corrections .corrections p { 
     display: list-item; 
