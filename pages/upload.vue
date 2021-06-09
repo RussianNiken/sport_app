@@ -19,10 +19,11 @@
 			<input v-model="weight" placeholder="kg" />
 
 
+			<p display="none">{{getExerciseList()}}</p>
 			<h2>Type of exercise:</h2>
-			<select v-model="exercise" required :disabled="selectExercise" >
-				<option v-for="e in exerciseTypes" :key="e.name" :value="e.name">{{e.name}}</option>
-			</select>
+				<select v-model="exercise" required :disabled="selectExercise" >
+					<option v-for="e in exerciseList" :key="e.name" :value="e.name">{{e.name}}</option>
+				</select>
 
 			{{qrdata}}
 			<div id="qrscanner" :style="showqr" style="margin: 50px auto 50px auto; display: flex; align-content: center; justify-content: center; max-height: 300px; max-width: 530px">
@@ -91,10 +92,16 @@ export default {
 			showqr: "display: none",
 			qrdata: "",
 			video: {},
-			selectExercise: false
+			selectExercise: false,
+			listReady: false,
+			exerciseList: []
 		}
 	},
 	methods: {
+		async getExerciseList ( ) {
+        	this.exerciseList = await this.$axios.$get(`/api/exerciselist`);
+			this.listReady = true;
+		},
 		file_changed( ) {
 			let reader = new FileReader();
 			this.file = this.$refs.finput.files[0];

@@ -72,10 +72,13 @@ app.get('/exercises', async (req, res) => {
   res.json(posts);
 })
 
+app.get('/exerciselist', async (req, res) => {
+  const posts = await prisma.exercises.findMany({});
+
+  res.json(posts);
+})
 
 app.get('/video', async (req, res) => {
-  const id = parseInt(req.query.id);
-
   const posts = await prisma.videos.findUnique({
       where: {
         video_id: id
