@@ -23,7 +23,7 @@
         <div class="relative z-10 p-10 py-5 grid w-screen">
             <div class="Date">
                 <h1> {{date}} </h1>
-                Squat, 300kg, {{reps}} reps
+                {{exercise}}, {{weight}}kg, {{reps}} reps
             </div>
 
             <div class="flex justify-end Score" :style="css">
@@ -103,7 +103,13 @@ export default {
             let str = date.toLocaleString(undefined,{ year: 'numeric', month: 'long', day: 'numeric' });
             str += `, ${date.getHours()}:` + ((date.getMinutes()<10)? '0' : '') + `${date.getMinutes()}`;
             return str;
-        }
+        },
+		weight() {
+        	return this.video.weight;
+		},
+		exercise() {
+			return this.video.exercisesName;
+		}
     },
     async fetch() {
         this.video = await this.$axios.$get(`/api/video?id=${this.$route.params.id}`);

@@ -110,6 +110,20 @@ app.post('/upload', async (req, res) => {
   res.status(200).json(post);
 })
 
+app.post('/update', async (req, res) => {
+  
+  let data = {
+    user_id: 1,
+    weight: parseInt( req.body.weight ),
+  } 
+
+  const post = await prisma.videos.update({
+    data: data,
+	where: { video_id: parseInt( req.body.id ) }
+  });
+
+  res.status(200).json(post);
+})
 
 export default {
     path: '/api',

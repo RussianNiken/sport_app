@@ -15,16 +15,20 @@
 		</div> <!-- NAV END -->
 
 		<div class="p-5 Main"> <!-- MAIN START -->
-
 			<h2>Weight: (optional)</h2>
 			<input v-model="weight" placeholder="kg" />
 
 
 			<h2>Type of exercise:</h2>
-			<select v-model="exercise" required >
+			<select v-model="exercise" required :disabled="selectExercise" >
 				<option v-for="e in exerciseTypes" :key="e.name" :value="e.name">{{e.name}}</option>
 			</select>
 
+			{{qrdata}}
+			<div id="qrscanner" :style="showqr" style="margin: 50px auto 50px auto; display: flex; align-content: center; justify-content: center; max-height: 300px; max-width: 530px">
+				<qrcode-stream @decode="onDecode"></qrcode-stream>
+			</div>
+			
 			<div class="FileUploadContainer">
 				<label class="FileUpload" style="width: 250px">
 					<input type="file" accept="video/mp4,video/x-m4v,video/*" @change="file_changed()" ref="finput" />
@@ -34,8 +38,7 @@
 					</svg>
 				</label>
 				
-				<label class="FileUpload" style="width: 250px">
-					<input type="file" accept="video/mp4,video/x-m4v,video/*" @change="file_changed()" ref="finput" />
+				<label class="FileUpload" style="width: 250px" v-on:click="toggleqr()">
 					<p style="margin-bottom: 16px">Scan QR code</p>
 					<svg width="100px" height="100px" viewBox="0 0 24 24" version="1.1" id="svg5" inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)" sodipodi:docname="qr.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
 						<sodipodi:namedview id="namedview7" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:pageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:document-units="mm" showgrid="false" inkscape:zoom="8" inkscape:cx="20.25" inkscape:cy="48.5625" inkscape:window-width="2560" inkscape:window-height="1414" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="layer2" showguides="true" inkscape:guide-bbox="true" width="24mm">
@@ -65,19 +68,30 @@
 			</div>
 
 		</div> <!-- MAIN END -->
-
 	</div>
 </template>
 
 <script>
 
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+
 export default {
+  	components: {
+    	QrcodeStream,
+    	QrcodeDropZone,
+    	QrcodeCapture
+	},
+
 	data() {
 		return {
 			exercise: '',
 			weight: 0,
 			exerciseTypes : [{name:"Squat"}],
-			file: {}
+			file: {},
+			showqr: "display: none",
+			qrdata: "",
+			video: {},
+			selectExercise: false
 		}
 	},
 	methods: {
@@ -111,6 +125,32 @@ export default {
 				
 			});
 
+		},
+		async onDecode ( result ) {
+			if ( this.selectExercise == true ) {
+				console.log( "qr code read! (" + result + ")" );
+				let that = this;
+				await this.$axios.$post('/api/update', {
+					id: result,
+					weight: that.weight
+				})
+				.then(function (response) {
+					console.log(response);
+					that.qrdata = "Video added!";
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			}
+		},
+		toggleqr ( ) {
+			if ( this.showqr == "display: none" ) {
+				this.showqr = "display: block";
+				this.selectExercise = true;
+			} else {
+				this.selectExercise = false;
+				this.showqr = "display: none";
+			}
 		}
 	}
 }
