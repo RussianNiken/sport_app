@@ -4,13 +4,20 @@ import { PrismaClient } from '@prisma/client'
 import cors from 'cors'
 
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+	datasources: {
+		db: {
+			url: "mysql://root:peke2792@pc.lony.xyz:3306/sport",
+		},
+	},
+})
+
 const app = express()
 
 console.log(app)
 
 app.use(cors({
-  origin: 'https://pc.lony.xyz:3000'
+  origin: 'http://pc.lony.xyz:3000'
 }));
 
 app.use(express.json({limit: '50mb'}))
