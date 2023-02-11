@@ -2,7 +2,7 @@
   <div class="ExerciseList" >
 		<div v-for="e in exercises" :key="e.video_id">
 			<nuxt-link :to="`videos/${e.video_id}`" >
-				<Exercise :date="parseDate(e)" type="Squat" :score="e.score" />
+				<Exercise :date="parseDate(e)" :type="e.exercisesName" :score="e.score" />
 			</nuxt-link>
 		</div>    
 
